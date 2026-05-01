@@ -236,6 +236,16 @@ h3 {
   color: rgba(26, 26, 46, 0.82);
 }
 
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  outline: none;
+}
+
 .nav-links a::after {
   content: "";
   position: absolute;
@@ -489,7 +499,26 @@ h3 {
   box-shadow: 0 14px 40px rgba(26, 26, 46, 0.10);
   border: 1px solid rgba(26, 26, 46, 0.08);
   overflow: hidden;
+  position: relative;
   transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms ease;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 107, 157, 0.15),
+    transparent 60%
+  );
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card:hover {
@@ -559,6 +588,8 @@ h3 {
 }
 
 .skill-pill {
+  position: relative;
+  overflow: hidden;
   padding: 0.55rem 0.7rem;
   border-radius: 999px;
   color: #fff;
@@ -567,6 +598,39 @@ h3 {
   font-size: 0.82rem;
   text-align: center;
   background: var(--grad);
+}
+
+.skill-pill::after {
+  content: "";
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: translateX(-120%);
+  opacity: 0;
+}
+
+.skill-pill:hover::after {
+  opacity: 1;
+  animation: shimmer 650ms ease-out forwards;
+}
+
+@keyframes shimmer {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 700ms ease, transform 700ms ease;
+  will-change: opacity, transform;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .timeline {
