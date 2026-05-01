@@ -222,7 +222,7 @@
 
   function loop(now) {
     if (!last) last = now;
-    const dt = now - last;
+    const dt = Math.min(34, now - last);
     last = now;
     acc += dt;
 
@@ -264,12 +264,17 @@
 
   document.addEventListener("keydown", (e) => {
     const k = e.key.toLowerCase();
+    const isMoveKey = ["arrowup", "arrowdown", "arrowleft", "arrowright", "w", "a", "s", "d"].includes(k);
+    if (isMoveKey || k === " ") e.preventDefault();
+
     if (state === "start") {
       startGame();
+      if (isMoveKey) setDirectionByKey(k);
       return;
     }
     if (state === "over") {
       startGame();
+      if (isMoveKey) setDirectionByKey(k);
       return;
     }
     setDirectionByKey(k);
@@ -281,12 +286,14 @@
   });
 
   canvas.addEventListener("touchstart", (e) => {
+    e.preventDefault();
     const t = e.touches[0];
     if (!t) return;
     touchStart = { x: t.clientX, y: t.clientY };
-  });
+  }, { passive: false });
 
   canvas.addEventListener("touchend", (e) => {
+    e.preventDefault();
     const t = e.changedTouches[0];
     if (!t || !touchStart) return;
     const dx = t.clientX - touchStart.x;
@@ -301,7 +308,7 @@
     if (Math.abs(dx) < 20 && Math.abs(dy) < 20) return;
     const nd = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? "arrowright" : "arrowleft") : dy > 0 ? "arrowdown" : "arrowup";
     setDirectionByKey(nd);
-  });
+  }, { passive: false });
 
   updateStats();
   resetDemo();
