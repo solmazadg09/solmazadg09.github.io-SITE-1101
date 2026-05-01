@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Raleway:wght@700;800;900&display=swap"
       rel="stylesheet"
     />
 
@@ -29,56 +29,88 @@
 
     <header class="site-header">
       <nav class="nav container" aria-label="Primary">
-        <a class="brand" href="./index.html">Your Name</a>
+        <a class="brand" href="./index.html" aria-label="Home">
+          <span class="brand-mark grad-text">YN</span>
+        </a>
 
-        <ul class="nav-links">
-          <li><a href="./index.html#home">Home</a></li>
-          <li><a class="active" href="./projects.html" aria-current="page">Projects</a></li>
-          <li><a href="./about.html">About</a></li>
-          <li><a href="./game.html">Game</a></li>
-          <li><a href="./index.html#contact">Contact</a></li>
-        </ul>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          type="button"
+          aria-label="Open menu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+        >
+          <span class="nav-toggle-lines" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
 
-        <a class="button button-ghost" href="./index.html#contact">Let’s talk</a>
+        <div class="nav-menu" id="navMenu">
+          <ul class="nav-links">
+            <li><a href="./index.html#home">Home</a></li>
+            <li><a class="active" href="./projects.html" aria-current="page">Projects</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./game.html">Game</a></li>
+            <li><a href="./index.html#contact">Contact</a></li>
+          </ul>
+        </div>
       </nav>
     </header>
 
     <main id="main">
       <section class="section container" aria-label="Projects introduction">
         <div class="section-header">
-          <h2>Projects</h2>
+          <p class="label">Work</p>
+          <h2 class="section-title">Projects</h2>
           <p class="muted">A few highlights. Swap in real screenshots from <code>images/</code>.</p>
         </div>
 
         <div class="cards">
           <article class="card" id="project-1">
-            <div class="card-media" role="img" aria-label="Project 1 image placeholder">
-              <span>Image</span>
+            <div class="project-hero" style="background: linear-gradient(135deg,#FF6B9D,#C44DFF,#4D79FF);">
+              <h3>Project 1: [your project 1 name]</h3>
             </div>
-            <h3>Project 1: [your project 1 name]</h3>
-            <p>[your project 1 description]</p>
+            <div class="card-body">
+              <p>[your project 1 description]</p>
+              <div class="tags" aria-label="Technologies">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JS</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="hour-of-code">
-            <div class="card-media" role="img" aria-label="Hour of Code image placeholder">
-              <span>Image</span>
+            <div class="project-hero" style="background: linear-gradient(135deg,#4D79FF,#C44DFF);">
+              <h3>Project 2: Hour of Code</h3>
             </div>
-            <h3>Project 2: Hour of Code</h3>
-            <p>
-              A short project focused on learning fundamentals through guided coding activities.
-              Add what you built, the tools you used, and what you learned.
-            </p>
+            <div class="card-body">
+              <p>
+                A short project focused on learning fundamentals through guided coding activities.
+                Add what you built, the tools you used, and what you learned.
+              </p>
+              <div class="tags" aria-label="Technologies">
+                <span class="tag">JavaScript</span>
+                <span class="tag">Practice</span>
+              </div>
+            </div>
           </article>
 
           <article class="card" id="robotics">
-            <div class="card-media" role="img" aria-label="Robotics image placeholder">
-              <span>Image</span>
+            <div class="project-hero" style="background: linear-gradient(135deg,#FFD93D,#FF6B9D);">
+              <h3>Project 3: Robotics</h3>
             </div>
-            <h3>Project 3: Robotics</h3>
-            <p>
-              A robotics-related build or activity. Describe the goal, the hardware/software used,
-              and the outcome (demo, competition, or prototype).
-            </p>
+            <div class="card-body">
+              <p>
+                A robotics-related build or activity. Describe the goal, the hardware/software used,
+                and the outcome (demo, competition, or prototype).
+              </p>
+              <div class="tags" aria-label="Technologies">
+                <span class="tag">STEM</span>
+                <span class="tag">Robotics</span>
+              </div>
+            </div>
           </article>
         </div>
       </section>
@@ -86,37 +118,31 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>© <span id="year">2026</span> Your Name. All rights reserved.</p>
-        <div class="footer-links">
-          <div class="icon-links" aria-label="Profile links">
-            <a
-              class="icon-link"
-              href="https://github.com/YOUR_GITHUB_USERNAME"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub profile"
-            >
-              <i class="fa-brands fa-github" aria-hidden="true"></i>
-            </a>
-            <a
-              class="icon-link"
-              href="https://www.codecademy.com/profiles/YOUR_CODECADEMY_USERNAME"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Codecademy profile"
-            >
-              <i class="fa-solid fa-code" aria-hidden="true"></i>
-            </a>
-          </div>
+        <div class="footer-icons" aria-label="Links">
+          <a class="footer-icon" href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
           <a
-            class="repo-link"
+            class="footer-icon"
+            href="https://www.codecademy.com/profiles/YOUR_CODECADEMY_USERNAME"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Codecademy"
+          >
+            <span class="cc-badge" aria-hidden="true">CC</span>
+          </a>
+          <a
+            class="footer-repo"
             href="https://github.com/YOUR_GITHUB_USERNAME/solmazadg09.github.io-SITE-1101"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Project repository
+            Repo
           </a>
         </div>
+
+        <div class="footer-tagline">Made with HTML, CSS &amp; JS ♥</div>
+        <div>© <span id="year">2026</span> [Name]</div>
       </div>
     </footer>
   </body>

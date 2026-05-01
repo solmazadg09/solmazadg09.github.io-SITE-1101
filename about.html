@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Raleway:wght@700;800;900&display=swap"
       rel="stylesheet"
     />
 
@@ -29,138 +29,127 @@
 
     <header class="site-header">
       <nav class="nav container" aria-label="Primary">
-        <a class="brand" href="./index.html">Your Name</a>
+        <a class="brand" href="./index.html" aria-label="Home">
+          <span class="brand-mark grad-text">YN</span>
+        </a>
 
-        <ul class="nav-links">
-          <li><a href="./index.html#home">Home</a></li>
-          <li><a href="./projects.html">Projects</a></li>
-          <li><a class="active" href="./about.html" aria-current="page">About</a></li>
-          <li><a href="./game.html">Game</a></li>
-          <li><a href="./index.html#contact">Contact</a></li>
-        </ul>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          type="button"
+          aria-label="Open menu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+        >
+          <span class="nav-toggle-lines" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
 
-        <a class="button button-ghost" href="./index.html#contact">Let’s talk</a>
+        <div class="nav-menu" id="navMenu">
+          <ul class="nav-links">
+            <li><a href="./index.html#home">Home</a></li>
+            <li><a href="./projects.html">Projects</a></li>
+            <li><a class="active" href="./about.html" aria-current="page">About</a></li>
+            <li><a href="./game.html">Game</a></li>
+            <li><a href="./index.html#contact">Contact</a></li>
+          </ul>
+        </div>
       </nav>
     </header>
 
     <main id="main">
-      <section class="section container" aria-label="About introduction">
+      <section class="section container" aria-label="About page">
         <div class="section-header">
-          <h2>About</h2>
-          <p class="muted">
-            A quick overview of my background, qualifications, and what I do outside work.
-          </p>
-        </div>
-      </section>
-
-      <section class="section container" id="background" aria-label="Background">
-        <div class="section-header">
-          <h2>Background</h2>
-          <p class="muted">
-            Write 3–5 sentences about where you started, what you’re focused on, and what
-            kinds of problems you enjoy solving.
-          </p>
+          <p class="label">About</p>
+          <h2 class="section-title">Background &amp; skills</h2>
+          <p class="muted">Two-column layout with a timeline and a skills grid.</p>
         </div>
 
-        <div class="cards">
-          <article class="card">
-            <h3>What I build</h3>
-            <p>Responsive websites, UI components, and clean frontend experiences.</p>
-          </article>
-          <article class="card">
-            <h3>How I work</h3>
-            <p>Simple, consistent design systems with attention to accessibility.</p>
-          </article>
-          <article class="card">
-            <h3>What I’m learning</h3>
-            <p>Add your current learning goals (frameworks, design, tooling, etc.).</p>
-          </article>
-        </div>
-      </section>
+        <div class="two-col">
+          <div>
+            <h3>Background</h3>
+            <p class="muted">
+              Write 3–6 sentences about your story: what you’re studying, what you’re building,
+              and what kind of work you’re excited about.
+            </p>
 
-      <section class="section container" id="qualifications" aria-label="Qualifications">
-        <div class="section-header">
-          <h2>Qualifications</h2>
-          <p class="muted">
-            List your education, certifications, and core skills.
-          </p>
-        </div>
+            <h3 style="margin-top: 1.25rem">Qualifications</h3>
+            <p class="muted">
+              Add your education, certifications, and strengths (front-end, UI, robotics, etc.).
+            </p>
 
-        <div class="cards">
-          <article class="card">
-            <h3>Skills</h3>
-            <p class="muted">HTML • CSS • JavaScript • (Add more)</p>
-            <a class="text-link" href="./index.html#projects">See projects</a>
-          </article>
-          <article class="card">
-            <h3>Education</h3>
-            <p class="muted">Your degree / school / relevant coursework.</p>
-          </article>
-          <article class="card">
-            <h3>Certifications</h3>
-            <p class="muted">Add certificates, bootcamps, or notable achievements.</p>
-          </article>
-        </div>
-      </section>
+            <div class="timeline" aria-label="Timeline">
+              <div class="timeline-track"></div>
+              <div class="timeline-steps">
+                <div>
+                  <div class="timeline-dot" aria-hidden="true"></div>
+                  <strong>School</strong>
+                </div>
+                <div>
+                  <div class="timeline-dot" aria-hidden="true"></div>
+                  <strong>Courses</strong>
+                </div>
+                <div>
+                  <div class="timeline-dot" aria-hidden="true"></div>
+                  <strong>Projects</strong>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <section class="section container" id="activities" aria-label="Activities">
-        <div class="section-header">
-          <h2>Activities</h2>
-          <p class="muted">
-            Share what you do outside your main work: clubs, volunteering, writing, sports, etc.
-          </p>
-        </div>
+          <aside>
+            <div class="ring-photo" role="img" aria-label="Profile photo placeholder">
+              <div class="photo-placeholder">Photo</div>
+            </div>
+            <p class="muted" style="margin-top: 0.85rem">
+              Fun facts: add 2–3 quick bullets (favorite tool, hobby, a fun achievement).
+            </p>
 
-        <div class="cards">
-          <article class="card">
-            <h3>Community</h3>
-            <p>Meetups, mentoring, open-source contributions, or helping others learn.</p>
-          </article>
-          <article class="card">
-            <h3>Interests</h3>
-            <p>Design, photography, reading, fitness—add what’s true for you.</p>
-          </article>
-          <article class="card">
-            <h3>Fun projects</h3>
-            <p>Side projects, experiments, and learning builds you do for enjoyment.</p>
-          </article>
+            <h3 style="margin-top: 1.25rem">Skills</h3>
+            <div class="skills-grid" aria-label="Skills">
+              <div class="skill-pill" style="background: linear-gradient(135deg,#FF6B9D,#C44DFF)">HTML</div>
+              <div class="skill-pill" style="background: linear-gradient(135deg,#C44DFF,#4D79FF)">CSS</div>
+              <div class="skill-pill" style="background: linear-gradient(135deg,#4D79FF,#FF6B9D)">JavaScript</div>
+              <div class="skill-pill" style="background: linear-gradient(135deg,#FFD93D,#FF6B9D)">UI</div>
+              <div class="skill-pill" style="background: linear-gradient(135deg,#FF6B9D,#4D79FF)">Git</div>
+              <div class="skill-pill" style="background: linear-gradient(135deg,#C44DFF,#FFD93D)">Robotics</div>
+            </div>
+
+            <h3 style="margin-top: 1.25rem">Activities</h3>
+            <p class="muted">Clubs, volunteering, competitions, open-source, sports, or anything you love.</p>
+          </aside>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>© <span id="year">2026</span> Your Name. All rights reserved.</p>
-        <div class="footer-links">
-          <div class="icon-links" aria-label="Profile links">
-            <a
-              class="icon-link"
-              href="https://github.com/YOUR_GITHUB_USERNAME"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub profile"
-            >
-              <i class="fa-brands fa-github" aria-hidden="true"></i>
-            </a>
-            <a
-              class="icon-link"
-              href="https://www.codecademy.com/profiles/YOUR_CODECADEMY_USERNAME"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Codecademy profile"
-            >
-              <i class="fa-solid fa-code" aria-hidden="true"></i>
-            </a>
-          </div>
+        <div class="footer-icons" aria-label="Links">
+          <a class="footer-icon" href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
           <a
-            class="repo-link"
+            class="footer-icon"
+            href="https://www.codecademy.com/profiles/YOUR_CODECADEMY_USERNAME"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Codecademy"
+          >
+            <span class="cc-badge" aria-hidden="true">CC</span>
+          </a>
+          <a
+            class="footer-repo"
             href="https://github.com/YOUR_GITHUB_USERNAME/solmazadg09.github.io-SITE-1101"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Project repository
+            Repo
           </a>
         </div>
+
+        <div class="footer-tagline">Made with HTML, CSS &amp; JS ♥</div>
+        <div>© <span id="year">2026</span> [Name]</div>
       </div>
     </footer>
   </body>

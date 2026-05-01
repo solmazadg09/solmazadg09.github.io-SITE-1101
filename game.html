@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Raleway:wght@700;800;900&display=swap"
       rel="stylesheet"
     />
 
@@ -30,17 +30,32 @@
 
     <header class="site-header">
       <nav class="nav container" aria-label="Primary">
-        <a class="brand" href="./index.html">Your Name</a>
+        <a class="brand" href="./index.html" aria-label="Home">
+          <span class="brand-mark grad-text">YN</span>
+        </a>
 
-        <ul class="nav-links">
-          <li><a href="./index.html#home">Home</a></li>
-          <li><a href="./projects.html">Projects</a></li>
-          <li><a href="./about.html">About</a></li>
-          <li><a class="active" href="./game.html" aria-current="page">Game</a></li>
-          <li><a href="./index.html#contact">Contact</a></li>
-        </ul>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          type="button"
+          aria-label="Open menu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+        >
+          <span class="nav-toggle-lines" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
 
-        <a class="button button-ghost" href="./index.html#contact">Let’s talk</a>
+        <div class="nav-menu" id="navMenu">
+          <ul class="nav-links">
+            <li><a href="./index.html#home">Home</a></li>
+            <li><a href="./projects.html">Projects</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a class="active" href="./game.html" aria-current="page">Game</a></li>
+            <li><a href="./index.html#contact">Contact</a></li>
+          </ul>
+        </div>
       </nav>
     </header>
 
@@ -64,7 +79,7 @@
               <strong id="best">0</strong>
             </div>
             <div class="game-actions">
-              <button class="button button-secondary" type="button" id="pauseBtn">Pause</button>
+              <button class="button button-outline" type="button" id="pauseBtn"><span>Pause</span></button>
               <button class="button button-primary" type="button" id="restartBtn">Restart</button>
             </div>
           </div>
@@ -81,7 +96,7 @@
             <!-- Start screen -->
             <div class="game-overlay" id="startOverlay" aria-hidden="false">
               <div class="overlay-card">
-                <p class="eyebrow">Mini game</p>
+                <p class="label">Mini game</p>
                 <h3>Ready to play?</h3>
                 <p class="muted">
                   Press <strong>Start</strong> and use <strong>Arrow keys</strong> or <strong>WASD</strong>.
@@ -95,7 +110,7 @@
             <!-- Game over screen -->
             <div class="game-overlay" id="gameOverOverlay" aria-hidden="true">
               <div class="overlay-card">
-                <p class="eyebrow">Game over</p>
+                <p class="label">Game over</p>
                 <h3>You crashed</h3>
                 <p class="muted">Score: <strong id="finalScore">0</strong></p>
                 <div class="overlay-actions">
@@ -116,37 +131,31 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>© <span id="year">2026</span> Your Name. All rights reserved.</p>
-        <div class="footer-links">
-          <div class="icon-links" aria-label="Profile links">
-            <a
-              class="icon-link"
-              href="https://github.com/YOUR_GITHUB_USERNAME"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub profile"
-            >
-              <i class="fa-brands fa-github" aria-hidden="true"></i>
-            </a>
-            <a
-              class="icon-link"
-              href="https://www.codecademy.com/profiles/YOUR_CODECADEMY_USERNAME"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Codecademy profile"
-            >
-              <i class="fa-solid fa-code" aria-hidden="true"></i>
-            </a>
-          </div>
+        <div class="footer-icons" aria-label="Links">
+          <a class="footer-icon" href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
           <a
-            class="repo-link"
+            class="footer-icon"
+            href="https://www.codecademy.com/profiles/YOUR_CODECADEMY_USERNAME"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Codecademy"
+          >
+            <span class="cc-badge" aria-hidden="true">CC</span>
+          </a>
+          <a
+            class="footer-repo"
             href="https://github.com/YOUR_GITHUB_USERNAME/solmazadg09.github.io-SITE-1101"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Project repository
+            Repo
           </a>
         </div>
+
+        <div class="footer-tagline">Made with HTML, CSS &amp; JS ♥</div>
+        <div>© <span id="year">2026</span> [Name]</div>
       </div>
     </footer>
   </body>

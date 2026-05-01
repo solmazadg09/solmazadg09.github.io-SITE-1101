@@ -20,12 +20,12 @@
 
   const GRID = 20;
   const BASE_TICK_MS = 110;
-  const BG = "#0b1220";
-  const GRID_LINE = "rgba(255,255,255,0.05)";
-  const SNAKE = "rgba(110,231,255,0.95)";
-  const SNAKE_HEAD = "rgba(167,139,250,0.95)";
-  const FOOD = "rgba(255,255,255,0.92)";
-  const FOOD_GLOW = "rgba(110,231,255,0.35)";
+  const BG = "#FFFDF7";
+  const GRID_LINE = "rgba(26,26,46,0.06)";
+  const SNAKE = "rgba(77,121,255,0.92)";
+  const SNAKE_HEAD = "rgba(196,77,255,0.95)";
+  const FOOD = "rgba(255,107,157,0.95)";
+  const FOOD_GLOW = "rgba(255,217,61,0.55)";
 
   /** @type {{x:number,y:number}[]} */
   let snake = [];
