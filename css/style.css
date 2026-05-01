@@ -309,6 +309,28 @@ code {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.20);
 }
 
+.card-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  background:
+    radial-gradient(120px 90px at 30% 25%, rgba(110, 231, 255, 0.28), transparent 60%),
+    radial-gradient(140px 110px at 70% 35%, rgba(167, 139, 250, 0.24), transparent 62%),
+    rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: grid;
+  place-items: center;
+  margin-bottom: 0.95rem;
+}
+
+.card-media span {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.85rem;
+}
+
 .card h3 {
   margin: 0 0 0.35rem;
   letter-spacing: -0.02em;
