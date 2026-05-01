@@ -52,7 +52,7 @@
             <li><a href="./index.html#home">Home</a></li>
             <li><a href="./projects.html">Projects</a></li>
             <li><a href="./about.html">About</a></li>
-            <li><a class="active" href="./game.html" aria-current="page">Game</a></li>
+            <li><a class="active" href="./game.html" aria-current="page">🐍 Game</a></li>
             <li><a href="./index.html#contact">Contact</a></li>
           </ul>
         </div>
@@ -62,21 +62,20 @@
     <main id="main">
       <section class="section container" aria-label="Snake game">
         <div class="section-header">
-          <h2>Snake</h2>
-          <p class="muted">
-            Use arrow keys (or WASD). Eat food to grow. Don’t hit the walls or yourself.
-          </p>
+          <p class="label">Mini game</p>
+          <h2 class="section-title"><span class="grad-text">🐍 Snake</span></h2>
+          <p class="muted game-quote">“Snakes and code — both require careful moves 🐍”</p>
         </div>
 
         <div class="game-shell" data-snake>
           <div class="game-topbar" aria-label="Game status">
             <div class="game-stat">
               <span class="muted">Score</span>
-              <strong id="score">0</strong>
+              <strong class="grad-text game-score" id="score">0</strong>
             </div>
             <div class="game-stat">
               <span class="muted">Best</span>
-              <strong id="best">0</strong>
+              <strong class="grad-text game-score" id="best">0</strong>
             </div>
             <div class="game-actions">
               <button class="button button-outline" type="button" id="pauseBtn"><span>Pause</span></button>
@@ -96,13 +95,14 @@
             <!-- Start screen -->
             <div class="game-overlay" id="startOverlay" aria-hidden="false">
               <div class="overlay-card">
-                <p class="label">Mini game</p>
-                <h3>Ready to play?</h3>
-                <p class="muted">
-                  Press <strong>Start</strong> and use <strong>Arrow keys</strong> or <strong>WASD</strong>.
+                <p class="label">Welcome</p>
+                <h3 class="overlay-title"><span class="grad-text">🐍 Snake</span></h3>
+                <p class="muted overlay-sub">
+                  High score: <strong class="grad-text" id="bestStart">0</strong>
                 </p>
+                <p class="muted overlay-sub">Press any key or tap to start.</p>
                 <div class="overlay-actions">
-                  <button class="button button-primary" type="button" id="startBtn">Start</button>
+                  <button class="button button-primary magnetic" type="button" id="startBtn">Play</button>
                 </div>
               </div>
             </div>
@@ -111,10 +111,15 @@
             <div class="game-overlay" id="gameOverOverlay" aria-hidden="true">
               <div class="overlay-card">
                 <p class="label">Game over</p>
-                <h3>You crashed</h3>
-                <p class="muted">Score: <strong id="finalScore">0</strong></p>
+                <h3 class="overlay-title"><span class="grad-text">Game Over</span></h3>
+                <p class="muted overlay-sub">
+                  Score: <strong class="grad-text" id="finalScore">0</strong>
+                </p>
+                <p class="muted overlay-sub">
+                  Best: <strong class="grad-text" id="bestEnd">0</strong>
+                </p>
                 <div class="overlay-actions">
-                  <button class="button button-primary" type="button" id="playAgainBtn">
+                  <button class="button button-primary magnetic" type="button" id="playAgainBtn">
                     Play again
                   </button>
                 </div>
@@ -123,7 +128,7 @@
           </div>
 
           <p class="muted game-hint">
-            Tip: You can’t reverse direction instantly (e.g., left to right).
+            Controls: Arrow keys / WASD • Swipe on mobile • Space to pause
           </p>
         </div>
       </section>

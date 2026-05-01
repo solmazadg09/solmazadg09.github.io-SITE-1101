@@ -733,6 +733,25 @@ h3 {
   margin: 0.35rem 0 0.6rem;
 }
 
+.game-quote {
+  margin-top: 0.75rem;
+  font-size: 1.05rem;
+}
+
+.game-score {
+  font-family: var(--font-head);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.overlay-title {
+  font-size: 1.6rem;
+}
+
+.overlay-sub {
+  margin: 0.35rem 0;
+}
+
 .overlay-actions {
   margin-top: 1rem;
   display: flex;

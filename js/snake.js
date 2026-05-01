@@ -10,6 +10,8 @@
 
   const scoreEl = document.getElementById("score");
   const bestEl = document.getElementById("best");
+  const bestStartEl = document.getElementById("bestStart");
+  const bestEndEl = document.getElementById("bestEnd");
   const finalScoreEl = document.getElementById("finalScore");
   const startOverlay = document.getElementById("startOverlay");
   const gameOverOverlay = document.getElementById("gameOverOverlay");
@@ -18,14 +20,20 @@
   const restartBtn = document.getElementById("restartBtn");
   const pauseBtn = document.getElementById("pauseBtn");
 
-  const GRID = 20;
-  const BASE_TICK_MS = 110;
+  // -----------------------------
+  // Theme + tuning
+  // -----------------------------
+  const GRID = 22;
+  const BASE_STEP_MS = 120; // base movement interval (ms)
+
   const BG = "#FFFDF7";
-  const GRID_LINE = "rgba(26,26,46,0.06)";
-  const SNAKE = "rgba(77,121,255,0.92)";
-  const SNAKE_HEAD = "rgba(196,77,255,0.95)";
-  const FOOD = "rgba(255,107,157,0.95)";
-  const FOOD_GLOW = "rgba(255,217,61,0.55)";
+  const GRID_LINE = "rgba(26,26,46,0.055)";
+  const WALL_TINT = "rgba(26,26,46,0.04)";
+
+  const C_HEAD = [255, 107, 157]; // pink
+  const C_MID = [196, 77, 255]; // purple
+  const C_TAIL = [77, 121, 255]; // blue
+  const C_FOOD = [255, 217, 61]; // yellow
 
   /** @type {{x:number,y:number}[]} */
   let snake = [];
@@ -37,9 +45,27 @@
   let food = { x: 10, y: 10 };
   let score = 0;
   let best = 0;
-  let running = false;
+  let foodsEaten = 0;
+
+  /** @type {"start"|"play"|"over"} */
+  let state = "start";
   let paused = false;
-  let lastStepAt = 0;
+
+  // animation timers (seconds-ish)
+  let foodSpawnT = 0;
+  let headGlowT = 0;
+  let gameOverFlashT = 0;
+
+  // fixed-step timing
+  let lastNow = 0;
+  let accumulator = 0;
+  let stepMs = BASE_STEP_MS;
+
+  // demo mode (start screen)
+  let demoTurn = 0;
+
+  // touch swipe
+  let touchStart = null;
 
   const storageKey = "snake_best_v1";
 
@@ -48,6 +74,8 @@
     const n = raw ? Number(raw) : 0;
     best = Number.isFinite(n) ? Math.max(0, n) : 0;
     if (bestEl) bestEl.textContent = String(best);
+    if (bestStartEl) bestStartEl.textContent = String(best);
+    if (bestEndEl) bestEndEl.textContent = String(best);
   }
 
   function saveBest() {
@@ -76,6 +104,7 @@
       const p = { x: randInt(GRID), y: randInt(GRID) };
       if (!snake.some((s) => samePos(s, p))) {
         food = p;
+        foodSpawnT = 1;
         return;
       }
     }
@@ -84,6 +113,7 @@
         const p = { x, y };
         if (!snake.some((s) => samePos(s, p))) {
           food = p;
+          foodSpawnT = 1;
           return;
         }
       }
@@ -101,43 +131,59 @@
     if (scoreEl) scoreEl.textContent = String(score);
   }
 
-  function reset() {
-    const mid = Math.floor(GRID / 2);
-    snake = [
-      { x: mid - 1, y: mid },
-      { x: mid, y: mid },
-      { x: mid + 1, y: mid },
-    ];
-    dir = { x: 1, y: 0 };
-    nextDir = { x: 1, y: 0 };
-    setScore(0);
-    placeFood();
-    paused = false;
-    if (pauseBtn) pauseBtn.textContent = "Pause";
-    draw();
+  function computeSpeed() {
+    const level = Math.floor(foodsEaten / 5);
+    // faster every 5 foods, but clamp to keep it playable
+    stepMs = Math.max(58, BASE_STEP_MS - level * 10);
   }
 
-  function start() {
-    reset();
-    running = true;
-    lastStepAt = performance.now();
+  function reset(mode = "play") {
+    const mid = Math.floor(GRID / 2);
+    const y = mid;
+    const len = mode === "start" ? 7 : 4;
+    snake = [];
+    for (let i = 0; i < len; i++) snake.push({ x: mid - (len - 1 - i), y });
+    dir = { x: 1, y: 0 };
+    nextDir = { x: 1, y: 0 };
+    foodsEaten = 0;
+    setScore(0);
+    headGlowT = 0;
+    gameOverFlashT = 0;
+    paused = false;
+    if (pauseBtn) pauseBtn.textContent = "Pause";
+    placeFood();
+    computeSpeed();
+    demoTurn = 0;
+  }
+
+  function startPlay() {
+    state = "play";
+    reset("play");
     setOverlay(startOverlay, false);
     setOverlay(gameOverOverlay, false);
-    requestAnimationFrame(loop);
   }
 
   function gameOver() {
-    running = false;
+    state = "over";
     paused = false;
+    gameOverFlashT = 1;
     if (pauseBtn) pauseBtn.textContent = "Pause";
     if (finalScoreEl) finalScoreEl.textContent = String(score);
-    setOverlay(gameOverOverlay, true);
 
     if (score > best) {
       best = score;
       if (bestEl) bestEl.textContent = String(best);
+      if (bestStartEl) bestStartEl.textContent = String(best);
+      if (bestEndEl) bestEndEl.textContent = String(best);
       saveBest();
     }
+
+    if (bestEndEl) bestEndEl.textContent = String(best);
+
+    // delay overlay slightly for a nicer "flash then reveal"
+    setTimeout(() => {
+      if (state === "over") setOverlay(gameOverOverlay, true);
+    }, 220);
   }
 
   function step() {
@@ -161,10 +207,29 @@
 
     snake.push(next);
     if (willEat) {
+      foodsEaten += 1;
       setScore(score + 1);
+      headGlowT = 1;
       placeFood();
+      computeSpeed();
     } else {
       snake.shift();
+    }
+  }
+
+  function demoLogic() {
+    // gentle autopilot on the start screen: trace a safe rectangle loop
+    const head = snake[snake.length - 1];
+    const margin = 2;
+    if (dir.x === 1 && head.x >= GRID - 1 - margin) nextDir = { x: 0, y: 1 };
+    else if (dir.y === 1 && head.y >= GRID - 1 - margin) nextDir = { x: -1, y: 0 };
+    else if (dir.x === -1 && head.x <= margin) nextDir = { x: 0, y: -1 };
+    else if (dir.y === -1 && head.y <= margin) nextDir = { x: 1, y: 0 };
+
+    // occasionally "wiggle" for life
+    demoTurn += 1;
+    if (demoTurn % 30 === 0) {
+      // no-op, just keeps animation cadence consistent
     }
   }
 
@@ -197,6 +262,7 @@
     const sz = cellSize();
     const w = GRID * sz;
     const h = GRID * sz;
+    const now = performance.now();
 
     // Clear
     ctx.fillStyle = BG;
@@ -209,45 +275,98 @@
     ctx.save();
     ctx.translate(ox, oy);
 
+    // subtle wall tint
+    ctx.fillStyle = WALL_TINT;
+    ctx.fillRect(0, 0, w, h);
+
     // Grid
     drawGrid(sz);
 
-    // Food glow
-    const fx = food.x * sz;
-    const fy = food.y * sz;
-    ctx.fillStyle = FOOD_GLOW;
-    roundRect(fx + 2, fy + 2, sz - 4, sz - 4, 8);
-    ctx.fill();
+    // Food (glowing pulsing circle + spawn pop)
+    const fx = food.x * sz + sz / 2;
+    const fy = food.y * sz + sz / 2;
+    const pulse = 0.92 + 0.08 * Math.sin(now / 180);
+    const pop = foodSpawnT > 0 ? 0.7 + (1 - foodSpawnT) * 0.45 : 1;
+    const r = (sz * 0.28) * pulse * pop;
 
-    // Food
-    ctx.fillStyle = FOOD;
-    roundRect(fx + 6, fy + 6, sz - 12, sz - 12, 7);
+    ctx.save();
+    ctx.shadowColor = `rgba(${C_FOOD[0]},${C_FOOD[1]},${C_FOOD[2]},0.65)`;
+    ctx.shadowBlur = 18;
+    ctx.fillStyle = `rgb(${C_FOOD[0]},${C_FOOD[1]},${C_FOOD[2]})`;
+    ctx.beginPath();
+    ctx.arc(fx, fy, r, 0, Math.PI * 2);
     ctx.fill();
+    ctx.restore();
 
-    // Snake
-    for (let i = 0; i < snake.length; i++) {
+    // Snake: rounded rect segments with head->tail gradient shift
+    const n = snake.length;
+    for (let i = 0; i < n; i++) {
       const s = snake[i];
       const x = s.x * sz;
       const y = s.y * sz;
-      const isHead = i === snake.length - 1;
-      ctx.fillStyle = isHead ? SNAKE_HEAD : SNAKE;
-      roundRect(x + 3, y + 3, sz - 6, sz - 6, 10);
+      const t = n <= 1 ? 1 : i / (n - 1); // tail 0 -> head 1
+
+      const col = t < 0.5 ? lerpRgb(C_TAIL, C_MID, t / 0.5) : lerpRgb(C_MID, C_HEAD, (t - 0.5) / 0.5);
+      ctx.fillStyle = `rgb(${col[0]},${col[1]},${col[2]})`;
+
+      // head glow flash on eat
+      const isHead = i === n - 1;
+      if (isHead && headGlowT > 0) {
+        ctx.save();
+        ctx.shadowColor = "rgba(255,107,157,0.45)";
+        ctx.shadowBlur = 22 * headGlowT;
+        roundRect(x + 3, y + 3, sz - 6, sz - 6, 12);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      roundRect(x + 3, y + 3, sz - 6, sz - 6, 12);
       ctx.fill();
     }
 
     ctx.restore();
+
+    // Game over red flash
+    if (gameOverFlashT > 0) {
+      ctx.save();
+      ctx.globalAlpha = 0.18 * gameOverFlashT;
+      ctx.fillStyle = "rgb(255, 60, 60)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.restore();
+    }
   }
 
   function loop(now) {
-    if (!running) return;
+    if (!lastNow) lastNow = now;
+    const dt = Math.min(32, now - lastNow);
+    lastNow = now;
+    accumulator += dt;
+
+    // decay animations (frame-rate independent-ish)
+    const decay = dt / 1000;
+    foodSpawnT = Math.max(0, foodSpawnT - decay * 3.2);
+    headGlowT = Math.max(0, headGlowT - decay * 5.5);
+    gameOverFlashT = Math.max(0, gameOverFlashT - decay * 4.5);
+
     if (!paused) {
-      const tickMs = Math.max(60, BASE_TICK_MS - Math.min(60, score * 2));
-      if (now - lastStepAt >= tickMs) {
-        lastStepAt = now;
-        step();
-        draw();
+      if (state === "start") {
+        // run demo at a slower rate
+        const demoMs = 150;
+        while (accumulator >= demoMs) {
+          accumulator -= demoMs;
+          demoLogic();
+          step();
+        }
+      } else if (state === "play") {
+        while (accumulator >= stepMs) {
+          accumulator -= stepMs;
+          step();
+          if (state !== "play") break;
+        }
       }
     }
+
+    draw();
     requestAnimationFrame(loop);
   }
 
@@ -262,15 +381,17 @@
     if (k === "arrowright" || k === "d") nd = { x: 1, y: 0 };
 
     if (k === " " || k === "p") {
-      if (!running) return;
+      if (state !== "play") return;
       paused = !paused;
       if (pauseBtn) pauseBtn.textContent = paused ? "Resume" : "Pause";
       e.preventDefault();
       return;
     }
 
-    if (k === "enter") {
-      if (!running) start();
+    // Start on any key/tap from start screen
+    if (state === "start") {
+      startPlay();
+      e.preventDefault();
       return;
     }
 
@@ -280,25 +401,85 @@
     e.preventDefault();
   }
 
+  function onTouchStart(e) {
+    const t = e.touches[0];
+    if (!t) return;
+    touchStart = { x: t.clientX, y: t.clientY };
+  }
+
+  function onTouchEnd(e) {
+    if (!touchStart) return;
+    const t = e.changedTouches[0];
+    if (!t) return;
+    const dx = t.clientX - touchStart.x;
+    const dy = t.clientY - touchStart.y;
+    touchStart = null;
+
+    // tap to start
+    if (Math.abs(dx) < 12 && Math.abs(dy) < 12 && state === "start") {
+      startPlay();
+      return;
+    }
+
+    const ax = Math.abs(dx);
+    const ay = Math.abs(dy);
+    if (Math.max(ax, ay) < 24) return;
+    const nd =
+      ax > ay
+        ? { x: dx > 0 ? 1 : -1, y: 0 }
+        : { x: 0, y: dy > 0 ? 1 : -1 };
+
+    if (state === "start") {
+      startPlay();
+    }
+    if (isOpposite(nd, dir)) return;
+    nextDir = nd;
+  }
+
   function bind() {
     document.addEventListener("keydown", onKeyDown, { passive: false });
 
-    if (startBtn) startBtn.addEventListener("click", start);
-    if (playAgainBtn) playAgainBtn.addEventListener("click", start);
-    if (restartBtn) restartBtn.addEventListener("click", start);
+    if (startBtn) startBtn.addEventListener("click", startPlay);
+    if (playAgainBtn) playAgainBtn.addEventListener("click", () => {
+      setOverlay(gameOverOverlay, false);
+      startPlay();
+    });
+    if (restartBtn) restartBtn.addEventListener("click", startPlay);
 
     if (pauseBtn)
       pauseBtn.addEventListener("click", () => {
-        if (!running) return;
+        if (state !== "play") return;
         paused = !paused;
         pauseBtn.textContent = paused ? "Resume" : "Pause";
       });
+
+    // Tap overlay/canvas to start on mobile
+    if (startOverlay)
+      startOverlay.addEventListener("click", () => {
+        if (state === "start") startPlay();
+      });
+
+    canvas.addEventListener("touchstart", onTouchStart, { passive: true });
+    canvas.addEventListener("touchend", onTouchEnd, { passive: true });
+  }
+
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
+  }
+
+  function lerpRgb(a, b, t) {
+    return [
+      Math.round(lerp(a[0], b[0], t)),
+      Math.round(lerp(a[1], b[1], t)),
+      Math.round(lerp(a[2], b[2], t)),
+    ];
   }
 
   loadBest();
-  reset();
+  reset("start");
   setOverlay(startOverlay, true);
   setOverlay(gameOverOverlay, false);
   bind();
+  requestAnimationFrame(loop);
 })();
 
