@@ -14,6 +14,13 @@
       rel="stylesheet"
     />
 
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/main.js" defer></script>
   </head>
@@ -25,7 +32,7 @@
         <a class="brand" href="./index.html">Your Name</a>
 
         <ul class="nav-links">
-          <li><a href="./index.html#home">Home</a></li>
+          <li><a class="active" href="./index.html#home" aria-current="page">Home</a></li>
           <li><a href="./projects.html">Projects</a></li>
           <li><a href="./about.html">About</a></li>
           <li><a href="./index.html#contact">Contact</a></li>
@@ -121,9 +128,36 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <p>© <span id="year">2026</span> Your Name. All rights reserved.</p>
-        <p class="muted">
-          Built with HTML, CSS, and JavaScript.
-        </p>
+        <div class="footer-links">
+          <div class="icon-links" aria-label="Profile links">
+            <a
+              class="icon-link"
+              href="https://github.com/YOUR_GITHUB_USERNAME"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub profile"
+            >
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+            </a>
+            <a
+              class="icon-link"
+              href="https://www.codecademy.com/profiles/YOUR_CODECADEMY_USERNAME"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Codecademy profile"
+            >
+              <i class="fa-solid fa-code" aria-hidden="true"></i>
+            </a>
+          </div>
+          <a
+            class="repo-link"
+            href="https://github.com/YOUR_GITHUB_USERNAME/solmazadg09.github.io-SITE-1101"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Project repository
+          </a>
+        </div>
       </div>
     </footer>
   </body>
