@@ -7,15 +7,45 @@
   const scoreEl = document.getElementById("score");
   const bestEl = document.getElementById("best");
   const actionBtn = document.getElementById("actionBtn");
-  if (!canvas || !ctx || !scoreEl || !bestEl || !actionBtn) return;
+  const canvasWrap = /** @type {HTMLElement|null} */ (canvas?.parentElement);
+  if (!canvas || !ctx || !scoreEl || !bestEl || !actionBtn || !canvasWrap) return;
 
   const GRID = 20;
+  const MAX_PX = 400;
+  const MIN_PX = 160;
   const STEP_MS = 118;
   const DEMO_STEP_MS = 180;
   const storageKey = "snake_best_v2";
 
   function cellSize() {
     return canvas.width / GRID;
+  }
+
+  /** Match buffer + wrapper width (grid-aligned) so the canvas is never stretched by CSS. */
+  function syncCanvasSize() {
+    const raw = canvasWrap.getBoundingClientRect().width;
+    let px = Math.floor(raw / GRID) * GRID;
+    px = Math.min(MAX_PX, Math.max(MIN_PX, px));
+    canvasWrap.style.width = `${px}px`;
+    canvasWrap.style.maxWidth = "100%";
+    if (px !== canvas.width || px !== canvas.height) {
+      canvas.width = px;
+      canvas.height = px;
+    }
+  }
+
+  function uiScale() {
+    return Math.max(0.55, Math.min(1, canvas.width / 400));
+  }
+
+  let resizeTimer = 0;
+  function onResize() {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      syncCanvasSize();
+      acc = 0;
+      last = performance.now();
+    }, 120);
   }
 
   /** @type {"start" | "play" | "over"} */
@@ -137,7 +167,8 @@
   }
 
   function drawRoundedRect(x, y, w, h, r) {
-    const rr = Math.min(r, w / 2, h / 2);
+    const cell = cellSize();
+    const rr = Math.min(r, w / 2, h / 2, Math.max(2, cell * 0.2));
     ctx.beginPath();
     ctx.moveTo(x + rr, y);
     ctx.arcTo(x + w, y, x + w, y + h, rr);
@@ -199,36 +230,40 @@
 
   function drawStartScreen() {
     drawBoard();
+    const s = uiScale();
     const cx = canvas.width / 2;
-    const grad = ctx.createLinearGradient(cx - 110, 120, cx + 110, 120);
+    const grad = ctx.createLinearGradient(cx - 110 * s, 120 * s, cx + 110 * s, 120 * s);
     grad.addColorStop(0, "#FF6B9D");
     grad.addColorStop(0.5, "#C44DFF");
     grad.addColorStop(1, "#4D79FF");
     ctx.fillStyle = grad;
-    ctx.font = "bold 44px Raleway, sans-serif";
+    ctx.font = `bold ${Math.round(44 * s)}px Raleway, sans-serif`;
     ctx.textAlign = "center";
-    ctx.fillText("🐍 Snake", cx, 130);
+    ctx.textBaseline = "middle";
+    ctx.fillText("🐍 Snake", cx, canvas.height * 0.32);
     ctx.fillStyle = "#777";
-    ctx.font = "16px Lato, sans-serif";
-    ctx.fillText("Press any key or tap to start", cx, 165);
+    ctx.font = `${Math.round(16 * s)}px Lato, sans-serif`;
+    ctx.fillText("Press any key or tap to start", cx, canvas.height * 0.41);
   }
 
   function drawGameOver() {
+    const s = uiScale();
     const cx = canvas.width / 2;
     const cy = canvas.height / 2;
     ctx.fillStyle = "rgba(255,255,255,0.92)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    const grad = ctx.createLinearGradient(cx - 120, cy - 40, cx + 120, cy - 40);
+    const grad = ctx.createLinearGradient(cx - 120 * s, cy - 40 * s, cx + 120 * s, cy - 40 * s);
     grad.addColorStop(0, "#FF6B9D");
     grad.addColorStop(0.5, "#C44DFF");
     grad.addColorStop(1, "#4D79FF");
     ctx.fillStyle = grad;
-    ctx.font = "bold 36px Raleway, sans-serif";
+    ctx.font = `bold ${Math.round(36 * s)}px Raleway, sans-serif`;
     ctx.textAlign = "center";
-    ctx.fillText("Game Over", cx, cy - 20);
+    ctx.textBaseline = "middle";
+    ctx.fillText("Game Over", cx, cy - 12 * s);
     ctx.fillStyle = "#1A1A2E";
-    ctx.font = "20px Lato, sans-serif";
-    ctx.fillText(`Score: ${score}`, cx, cy + 20);
+    ctx.font = `${Math.round(20 * s)}px Lato, sans-serif`;
+    ctx.fillText(`Score: ${score}`, cx, cy + 18 * s);
   }
 
   function loop(now) {
@@ -258,6 +293,7 @@
   }
 
   function startGame() {
+    syncCanvasSize();
     acc = 0;
     last = performance.now();
     state = "play";
@@ -318,13 +354,25 @@
       return;
     }
 
-    if (Math.abs(dx) < 20 && Math.abs(dy) < 20) return;
+    const minSwipe = Math.max(18, Math.round(canvas.width * 0.06));
+    if (Math.abs(dx) < minSwipe && Math.abs(dy) < minSwipe) return;
     const nd = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? "arrowright" : "arrowleft") : dy > 0 ? "arrowdown" : "arrowup";
     setDirectionByKey(nd);
   }, { passive: false });
 
+  syncCanvasSize();
+  window.addEventListener("resize", onResize);
+  window.addEventListener("orientationchange", onResize);
+  if (typeof ResizeObserver !== "undefined") {
+    new ResizeObserver(onResize).observe(canvasWrap);
+  }
+
   updateStats();
   resetDemo();
   requestAnimationFrame(loop);
+
+  requestAnimationFrame(() => {
+    syncCanvasSize();
+  });
 })();
 
