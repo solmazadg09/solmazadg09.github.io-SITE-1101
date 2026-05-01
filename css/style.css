@@ -388,6 +388,19 @@ h3 {
   background: none;
 }
 
+/* Home hero CTAs: stable hover — no translate (avoids jump / magnetic jitter) */
+.hero-actions .button-primary:hover,
+.hero-actions .button-primary:focus-visible {
+  transform: scale(1.02);
+  box-shadow: 0 12px 28px rgba(196, 77, 255, 0.22);
+}
+
+.hero-actions .button-outline:hover,
+.hero-actions .button-outline:focus-visible {
+  transform: scale(1.02);
+  box-shadow: 0 10px 26px rgba(196, 77, 255, 0.12);
+}
+
 /* Sections */
 .section {
   padding: 80px 0;
