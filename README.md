@@ -1,48 +1,52 @@
-# Portfolio Website (SITE-1101)
+# Solmaz - Personal Portfolio
 
-A responsive personal portfolio website built with **HTML**, **CSS**, and **JavaScript**.  
-Includes multiple pages (Home, About, Projects) and a playable **Snake** game using the HTML canvas.
+## 🌐 Live Site
+**[https://solmazadg09.github.io/solmazadg09.github.io-SITE-1101/](https://solmazadg09.github.io/solmazadg09.github.io-SITE-1101/)**
 
-## Live site (GitHub Pages)
+## ✨ Overview
+Personal portfolio website built from scratch with HTML, CSS, and vanilla JavaScript for SITE 1101: Principles of Information Systems.
 
-- `https://YOUR_GITHUB_USERNAME.github.io/solmazadg09.github.io-SITE-1101/`
+## 📄 Pages
+| Page | Highlights |
+|------|-----------|
+| **Home** | Gradient hero, text scramble, magnetic buttons, floating blobs |
+| **About** | Bio, gradient skills grid, timeline |
+| **Projects** | Card spotlight hover, gradient cards, tech tags |
+| **Game** | Gradient Snake game with glow, mobile swipe, high score |
 
-## Pages overview
+## 🎨 Design Inspiration
+Inspired by Josh W. Comeau's portfolio: **[https://www.joshwcomeau.com/](https://www.joshwcomeau.com/)**
 
-- **Home**: `index.html` — navbar, hero section, featured projects preview, contact section, footer
-- **About**: `about.html` — background, qualifications, and activities
-- **Projects**: `projects.html` — card layout with project image placeholders
-- **Game**: `game.html` — fully working Snake game (start screen, score, game over)
+## 💻 Tech Stack
+`HTML5` `CSS3` `Vanilla JavaScript` `Font Awesome 6` `Google Fonts`
 
-## Technologies used
+## ✨ Key Features
+- Gradient text & gradient blob background shapes
+- Magnetic button hover effect
+- Card mouse-tracking spotlight glow effect
+- Text scramble animation on page load
+- Scroll-reveal with staggered animations
+- Gradient Snake game (60fps, mobile swipe)
+- Fully responsive with hamburger menu
+- GitHub & Codecademy profile links
 
-- **HTML5**
-- **CSS3** (responsive layout with media queries, modern card UI)
-- **JavaScript** (site utilities + Snake game logic)
-- **Google Fonts** (Inter)
-- **Font Awesome** (footer icons)
-
-## How to run locally
-
-Because this is a static site, you can run it by simply opening the HTML files, but using a local server is recommended.
-
-### Option A: Open directly
-
-1. Double-click `index.html`
-
-### Option B: Use a local server (recommended)
-
-If you have Python installed:
-
+## 🚀 Run Locally
 ```bash
-python -m http.server 5500
+git clone https://github.com/solmazadg09/solmazadg09.github.io-SITE-1101.git
+# Open index.html in any browser - no build step needed
 ```
 
-Then open:
-
-- `http://localhost:5500/`
-
-## Notes / Customize
-
-- Update your profile links in the footer (GitHub + Codecademy) and the repository link placeholders.
-- Replace image placeholders by adding images to `images/` and referencing them in your HTML.
+## 📦 Structure
+```text
+.
+├── index.html       # Home
+├── about.html       # About
+├── projects.html    # Projects
+├── game.html        # Snake Game
+├── css/
+│   └── style.css    # All styles
+├── js/
+│   └── main.js      # Shared JavaScript
+├── images/          # Photos & assets
+└── README.md
+```
