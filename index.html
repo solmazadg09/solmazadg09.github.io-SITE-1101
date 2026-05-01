@@ -28,93 +28,97 @@
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
-      <nav class="nav container" aria-label="Primary">
-        <a class="brand" href="./index.html" aria-label="Home">
-          <span class="brand-mark grad-text">YN</span>
-        </a>
+      <nav class="nav" aria-label="Primary">
+        <div class="container nav-inner">
+          <a class="brand" href="./index.html" aria-label="Home">
+            <span class="brand-mark grad-text">YN</span>
+          </a>
 
-        <button
-          class="nav-toggle"
-          id="navToggle"
-          type="button"
-          aria-label="Open menu"
-          aria-controls="navMenu"
-          aria-expanded="false"
-        >
-          <span class="nav-toggle-lines" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </span>
-        </button>
+          <button
+            class="nav-toggle"
+            id="navToggle"
+            type="button"
+            aria-label="Open menu"
+            aria-controls="navMenu"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-lines" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+          </button>
 
-        <div class="nav-menu" id="navMenu">
-          <ul class="nav-links">
-            <li><a class="active" href="./index.html#home" aria-current="page">Home</a></li>
-            <li><a href="./projects.html">Projects</a></li>
-            <li><a href="./about.html">About</a></li>
-            <li><a href="./game.html">🐍 Game</a></li>
-            <li><a href="./index.html#contact">Contact</a></li>
-          </ul>
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-links">
+              <li><a class="active" href="./index.html#home" aria-current="page">Home</a></li>
+              <li><a href="./projects.html">Projects</a></li>
+              <li><a href="./about.html">About</a></li>
+              <li><a href="./game.html">🐍 Game</a></li>
+              <li><a href="./index.html#contact">Contact</a></li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
 
     <main id="main">
-      <section class="hero container" id="home" aria-label="Hero">
+      <section class="hero" id="home" aria-label="Hero">
         <div class="blob one" aria-hidden="true"></div>
         <div class="blob two" aria-hidden="true"></div>
 
-        <div>
-          <p class="label">Welcome</p>
-          <h1>
-            <span>Hi, I’m </span><span class="grad-text" id="heroName" data-text="[Name]">[Name]</span><span> ✦</span>
-          </h1>
+        <div class="container hero-inner">
+          <div>
+            <p class="label">Welcome</p>
+            <h1>
+              <span>Hi, I’m </span><span class="grad-text" id="heroName" data-text="[Name]">[Name]</span><span> ✦</span>
+            </h1>
 
-          <p class="hero-subtitle">
-            <span class="muted">I’m a </span>
-            <span class="typing grad-text" id="typing" data-words='["Student","Web Developer","Creator"]'></span
-            ><span class="typing-cursor" aria-hidden="true">|</span>
-            <span class="muted"> who loves building playful, polished web experiences.</span>
-          </p>
+            <p class="hero-subtitle">
+              <span class="muted">I’m a </span>
+              <span class="typing grad-text" id="typing" data-words='["Student","Web Developer","Creator"]'></span
+              ><span class="typing-cursor" aria-hidden="true">|</span>
+              <span class="muted"> who loves building playful, polished web experiences.</span>
+            </p>
 
-          <div class="hero-actions">
-            <a class="button button-primary magnetic" href="./projects.html">View Projects</a>
-            <a class="button button-outline magnetic" href="./about.html"><span>About Me</span></a>
+            <div class="hero-actions">
+              <a class="button button-primary magnetic" href="./projects.html">View Projects</a>
+              <a class="button button-outline magnetic" href="./about.html"><span>About Me</span></a>
+            </div>
+            <div class="hero-links" aria-label="Quick profile links">
+              <a
+                class="hero-link"
+                href="https://github.com/solmazadg09"
+                target="_blank"
+                rel="noopener"
+                aria-label="GitHub Profile"
+              >
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+              <a
+                class="hero-link"
+                href="https://github.com/solmazadg09/solmazadg09.github.io-SITE-1101"
+                target="_blank"
+                rel="noopener"
+                aria-label="Repo"
+              >
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </a>
+              <a
+                class="hero-link"
+                href="https://www.codecademy.com/profiles/solmazadg09"
+                target="_blank"
+                rel="noopener"
+                aria-label="Codecademy Profile"
+                title="Codecademy Profile"
+              >
+                <span class="cc-badge" aria-hidden="true">CC</span>
+              </a>
+            </div>
           </div>
-          <div class="hero-links" aria-label="Quick profile links">
-            <a
-              class="hero-link"
-              href="https://github.com/solmazadg09"
-              target="_blank"
-              rel="noopener"
-              aria-label="GitHub Profile"
-            >
-              <i class="fa-brands fa-github" aria-hidden="true"></i>
-            </a>
-            <a
-              class="hero-link"
-              href="https://github.com/solmazadg09/solmazadg09.github.io-SITE-1101"
-              target="_blank"
-              rel="noopener"
-              aria-label="Repo"
-            >
-              <i class="fa-brands fa-github" aria-hidden="true"></i>
-            </a>
-            <a
-              class="hero-link"
-              href="https://www.codecademy.com/profiles/solmazadg09"
-              target="_blank"
-              rel="noopener"
-              aria-label="Codecademy Profile"
-              title="Codecademy Profile"
-            >
-              <span class="cc-badge" aria-hidden="true">CC</span>
-            </a>
-          </div>
-        </div>
 
-        <div aria-label="Profile photo">
-          <div class="ring-photo" role="img" aria-label="Profile photo placeholder">
-            <div class="photo-placeholder">Photo</div>
+          <div aria-label="Profile photo">
+            <div class="ring-photo" role="img" aria-label="Profile photo placeholder">
+              <div class="photo-placeholder">Photo</div>
+            </div>
           </div>
         </div>
       </section>

@@ -29,107 +29,70 @@
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
-      <nav class="nav container" aria-label="Primary">
-        <a class="brand" href="./index.html" aria-label="Home">
-          <span class="brand-mark grad-text">YN</span>
-        </a>
+      <nav class="nav" aria-label="Primary">
+        <div class="container nav-inner">
+          <a class="brand" href="./index.html" aria-label="Home">
+            <span class="brand-mark grad-text">YN</span>
+          </a>
 
-        <button
-          class="nav-toggle"
-          id="navToggle"
-          type="button"
-          aria-label="Open menu"
-          aria-controls="navMenu"
-          aria-expanded="false"
-        >
-          <span class="nav-toggle-lines" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </span>
-        </button>
+          <button
+            class="nav-toggle"
+            id="navToggle"
+            type="button"
+            aria-label="Open menu"
+            aria-controls="navMenu"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-lines" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+          </button>
 
-        <div class="nav-menu" id="navMenu">
-          <ul class="nav-links">
-            <li><a href="./index.html#home">Home</a></li>
-            <li><a href="./projects.html">Projects</a></li>
-            <li><a href="./about.html">About</a></li>
-            <li><a class="active" href="./game.html" aria-current="page">🐍 Game</a></li>
-            <li><a href="./index.html#contact">Contact</a></li>
-          </ul>
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-links">
+              <li><a href="./index.html#home">Home</a></li>
+              <li><a href="./projects.html">Projects</a></li>
+              <li><a href="./about.html">About</a></li>
+              <li><a class="active" href="./game.html" aria-current="page">🐍 Game</a></li>
+              <li><a href="./index.html#contact">Contact</a></li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
 
     <main id="main">
-      <section class="section container" aria-label="Snake game">
-        <div class="section-header">
-          <p class="label">Mini game</p>
-          <h2 class="section-title"><span class="grad-text">🐍 Snake</span></h2>
-          <p class="muted game-quote">“Snakes and code — both require careful moves 🐍”</p>
-        </div>
-
-        <div class="game-shell" data-snake>
-          <div class="game-topbar" aria-label="Game status">
-            <div class="game-stat">
-              <span class="muted">Score</span>
-              <strong class="grad-text game-score" id="score">0</strong>
-            </div>
-            <div class="game-stat">
-              <span class="muted">Best</span>
-              <strong class="grad-text game-score" id="best">0</strong>
-            </div>
-            <div class="game-actions">
-              <button class="button button-outline" type="button" id="pauseBtn"><span>Pause</span></button>
-              <button class="button button-primary" type="button" id="restartBtn">Restart</button>
-            </div>
+      <section class="section game-page" aria-label="Snake game">
+        <div class="container">
+          <div class="game-page-head">
+            <h1 class="game-title grad-text">🐍 Snake</h1>
+            <p class="muted">How long can you go?</p>
           </div>
 
-          <div class="canvas-wrap">
-            <canvas
-              id="gameCanvas"
-              width="520"
-              height="520"
-              aria-label="Snake game canvas"
-              role="img"
-            ></canvas>
-
-            <!-- Start screen -->
-            <div class="game-overlay" id="startOverlay" aria-hidden="false">
-              <div class="overlay-card">
-                <p class="label">Welcome</p>
-                <h3 class="overlay-title"><span class="grad-text">🐍 Snake</span></h3>
-                <p class="muted overlay-sub">
-                  High score: <strong class="grad-text" id="bestStart">0</strong>
-                </p>
-                <p class="muted overlay-sub">Press any key or tap to start.</p>
-                <div class="overlay-actions">
-                  <button class="button button-primary magnetic" type="button" id="startBtn">Play</button>
-                </div>
+          <div class="game-shell" data-snake>
+            <div class="game-card">
+              <div class="game-topbar" aria-label="Game status">
+                <div class="game-stat" id="score">Score: 0</div>
+                <div class="game-stat" id="best">Best: 0</div>
               </div>
-            </div>
 
-            <!-- Game over screen -->
-            <div class="game-overlay" id="gameOverOverlay" aria-hidden="true">
-              <div class="overlay-card">
-                <p class="label">Game over</p>
-                <h3 class="overlay-title"><span class="grad-text">Game Over</span></h3>
-                <p class="muted overlay-sub">
-                  Score: <strong class="grad-text" id="finalScore">0</strong>
-                </p>
-                <p class="muted overlay-sub">
-                  Best: <strong class="grad-text" id="bestEnd">0</strong>
-                </p>
-                <div class="overlay-actions">
-                  <button class="button button-primary magnetic" type="button" id="playAgainBtn">
-                    Play again
-                  </button>
-                </div>
+              <div class="canvas-wrap">
+                <canvas
+                  id="gameCanvas"
+                  width="400"
+                  height="400"
+                  aria-label="Snake game canvas"
+                  role="img"
+                ></canvas>
               </div>
+
+              <div class="game-actions">
+                <button class="game-cta" type="button" id="actionBtn">Start</button>
+              </div>
+
+              <p class="game-hint">⌨️ Arrow keys or WASD to move • Mobile: swipe</p>
             </div>
           </div>
-
-          <p class="muted game-hint">
-            Controls: Arrow keys / WASD • Swipe on mobile • Space to pause
-          </p>
         </div>
       </section>
     </main>

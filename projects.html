@@ -28,45 +28,48 @@
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
-      <nav class="nav container" aria-label="Primary">
-        <a class="brand" href="./index.html" aria-label="Home">
-          <span class="brand-mark grad-text">YN</span>
-        </a>
+      <nav class="nav" aria-label="Primary">
+        <div class="container nav-inner">
+          <a class="brand" href="./index.html" aria-label="Home">
+            <span class="brand-mark grad-text">YN</span>
+          </a>
 
-        <button
-          class="nav-toggle"
-          id="navToggle"
-          type="button"
-          aria-label="Open menu"
-          aria-controls="navMenu"
-          aria-expanded="false"
-        >
-          <span class="nav-toggle-lines" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </span>
-        </button>
+          <button
+            class="nav-toggle"
+            id="navToggle"
+            type="button"
+            aria-label="Open menu"
+            aria-controls="navMenu"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-lines" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+          </button>
 
-        <div class="nav-menu" id="navMenu">
-          <ul class="nav-links">
-            <li><a href="./index.html#home">Home</a></li>
-            <li><a class="active" href="./projects.html" aria-current="page">Projects</a></li>
-            <li><a href="./about.html">About</a></li>
-            <li><a href="./game.html">🐍 Game</a></li>
-            <li><a href="./index.html#contact">Contact</a></li>
-          </ul>
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-links">
+              <li><a href="./index.html#home">Home</a></li>
+              <li><a class="active" href="./projects.html" aria-current="page">Projects</a></li>
+              <li><a href="./about.html">About</a></li>
+              <li><a href="./game.html">🐍 Game</a></li>
+              <li><a href="./index.html#contact">Contact</a></li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
 
     <main id="main">
-      <section class="section container" aria-label="Projects introduction">
-        <div class="section-header">
+      <section class="section" aria-label="Projects introduction">
+        <div class="container">
+          <div class="section-header">
           <p class="label">Work</p>
           <h2 class="section-title">Projects</h2>
           <p class="muted">A few highlights. Swap in real screenshots from <code>images/</code>.</p>
-        </div>
+          </div>
 
-        <div class="cards">
+          <div class="cards">
           <article class="card" id="project-1">
             <div class="project-hero" style="background: linear-gradient(135deg,#FF6B9D,#C44DFF,#4D79FF);">
               <h3>Project 1: [your project 1 name]</h3>
@@ -112,6 +115,7 @@
               </div>
             </div>
           </article>
+          </div>
         </div>
       </section>
     </main>

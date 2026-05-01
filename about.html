@@ -28,46 +28,49 @@
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
-      <nav class="nav container" aria-label="Primary">
-        <a class="brand" href="./index.html" aria-label="Home">
-          <span class="brand-mark grad-text">YN</span>
-        </a>
+      <nav class="nav" aria-label="Primary">
+        <div class="container nav-inner">
+          <a class="brand" href="./index.html" aria-label="Home">
+            <span class="brand-mark grad-text">YN</span>
+          </a>
 
-        <button
-          class="nav-toggle"
-          id="navToggle"
-          type="button"
-          aria-label="Open menu"
-          aria-controls="navMenu"
-          aria-expanded="false"
-        >
-          <span class="nav-toggle-lines" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </span>
-        </button>
+          <button
+            class="nav-toggle"
+            id="navToggle"
+            type="button"
+            aria-label="Open menu"
+            aria-controls="navMenu"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-lines" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+          </button>
 
-        <div class="nav-menu" id="navMenu">
-          <ul class="nav-links">
-            <li><a href="./index.html#home">Home</a></li>
-            <li><a href="./projects.html">Projects</a></li>
-            <li><a class="active" href="./about.html" aria-current="page">About</a></li>
-            <li><a href="./game.html">🐍 Game</a></li>
-            <li><a href="./index.html#contact">Contact</a></li>
-          </ul>
+          <div class="nav-menu" id="navMenu">
+            <ul class="nav-links">
+              <li><a href="./index.html#home">Home</a></li>
+              <li><a href="./projects.html">Projects</a></li>
+              <li><a class="active" href="./about.html" aria-current="page">About</a></li>
+              <li><a href="./game.html">🐍 Game</a></li>
+              <li><a href="./index.html#contact">Contact</a></li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
 
     <main id="main">
-      <section class="section container" aria-label="About page">
-        <div class="section-header">
+      <section class="section" aria-label="About page">
+        <div class="container">
+          <div class="section-header">
           <p class="label">About</p>
           <h2 class="section-title">Background &amp; skills</h2>
           <p class="muted">Two-column layout with a timeline and a skills grid.</p>
-        </div>
+          </div>
 
-        <div class="two-col">
-          <div>
+          <div class="two-col">
+            <div>
             <h3>Background</h3>
             <p class="muted">
               Write 3–6 sentences about your story: what you’re studying, what you’re building,
@@ -96,9 +99,9 @@
                 </div>
               </div>
             </div>
-          </div>
+            </div>
 
-          <aside>
+            <aside>
             <div class="ring-photo" role="img" aria-label="Profile photo placeholder">
               <div class="photo-placeholder">Photo</div>
             </div>
@@ -118,7 +121,8 @@
 
             <h3 style="margin-top: 1.25rem">Activities</h3>
             <p class="muted">Clubs, volunteering, competitions, open-source, sports, or anything you love.</p>
-          </aside>
+            </aside>
+          </div>
         </div>
       </section>
     </main>
