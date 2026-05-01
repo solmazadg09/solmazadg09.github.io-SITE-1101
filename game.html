@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Snake game — play in the browser" />
+    <title>Game — Snake</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/main.js" defer></script>
+    <script src="./js/snake.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary">
+        <a class="brand" href="./index.html">Your Name</a>
+
+        <ul class="nav-links">
+          <li><a href="./index.html#home">Home</a></li>
+          <li><a href="./projects.html">Projects</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a class="active" href="./game.html" aria-current="page">Game</a></li>
+          <li><a href="./index.html#contact">Contact</a></li>
+        </ul>
+
+        <a class="button button-ghost" href="./index.html#contact">Let’s talk</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section container" aria-label="Snake game">
+        <div class="section-header">
+          <h2>Snake</h2>
+          <p class="muted">
+            Use arrow keys (or WASD). Eat food to grow. Don’t hit the walls or yourself.
+          </p>
+        </div>
+
+        <div class="game-shell" data-snake>
+          <div class="game-topbar" aria-label="Game status">
+            <div class="game-stat">
+              <span class="muted">Score</span>
+              <strong id="score">0</strong>
+            </div>
+            <div class="game-stat">
+              <span class="muted">Best</span>
+              <strong id="best">0</strong>
+            </div>
+            <div class="game-actions">
+              <button class="button button-secondary" type="button" id="pauseBtn">Pause</button>
+              <button class="button button-primary" type="button" id="restartBtn">Restart</button>
+            </div>
+          </div>
+
+          <div class="canvas-wrap">
+            <canvas
+              id="gameCanvas"
+              width="520"
+              height="520"
+              aria-label="Snake game canvas"
+              role="img"
+            ></canvas>
+
+            <!-- Start screen -->
+            <div class="game-overlay" id="startOverlay" aria-hidden="false">
+              <div class="overlay-card">
+                <p class="eyebrow">Mini game</p>
+                <h3>Ready to play?</h3>
+                <p class="muted">
+                  Press <strong>Start</strong> and use <strong>Arrow keys</strong> or <strong>WASD</strong>.
+                </p>
+                <div class="overlay-actions">
+                  <button class="button button-primary" type="button" id="startBtn">Start</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Game over screen -->
+            <div class="game-overlay" id="gameOverOverlay" aria-hidden="true">
+              <div class="overlay-card">
+                <p class="eyebrow">Game over</p>
+                <h3>You crashed</h3>
+                <p class="muted">Score: <strong id="finalScore">0</strong></p>
+                <div class="overlay-actions">
+                  <button class="button button-primary" type="button" id="playAgainBtn">
+                    Play again
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="muted game-hint">
+            Tip: You can’t reverse direction instantly (e.g., left to right).
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year">2026</span> Your Name. All rights reserved.</p>
+        <div class="footer-links">
+          <div class="icon-links" aria-label="Profile links">
+            <a
+              class="icon-link"
+              href="https://github.com/YOUR_GITHUB_USERNAME"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub profile"
+            >
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+            </a>
+            <a
+              class="icon-link"
+              href="https://www.codecademy.com/profiles/YOUR_CODECADEMY_USERNAME"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Codecademy profile"
+            >
+              <i class="fa-solid fa-code" aria-hidden="true"></i>
+            </a>
+          </div>
+          <a
+            class="repo-link"
+            href="https://github.com/YOUR_GITHUB_USERNAME/solmazadg09.github.io-SITE-1101"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Project repository
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+

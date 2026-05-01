@@ -1,1 +1,5 @@
-// Main JavaScript entry point (intentionally minimal for now).
+// Main JavaScript entry point (kept intentionally minimal).
+(() => {
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+})();
