@@ -53,7 +53,6 @@
               <li><a class="active" href="./projects.html" aria-current="page">Projects</a></li>
               <li><a href="./about.html">About</a></li>
               <li><a href="./game.html">🐍 Game</a></li>
-              <li><a href="./index.html#contact">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -70,51 +69,61 @@
           </div>
 
           <div class="cards">
-          <article class="card" id="project-1">
-            <div class="project-hero" style="background: linear-gradient(135deg,#FF6B9D,#C44DFF,#4D79FF);">
-              <h3>Project 1: [your project 1 name]</h3>
-            </div>
-            <div class="card-body">
-              <p>[your project 1 description]</p>
-              <div class="tags" aria-label="Technologies">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JS</span>
+            <article class="card project-card" id="project-1" tabindex="0" role="button" data-project="project1" aria-label="Open project details">
+              <div class="project-hero" style="background: linear-gradient(135deg,#FF6B9D,#C44DFF,#4D79FF);">
+                <h3>Project 1: Portfolio Website</h3>
               </div>
-            </div>
-          </article>
+              <div class="card-body">
+                <p>Responsive multi-page website with a polished UI and animated interactions.</p>
+                <div class="tags" aria-label="Technologies">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JS</span>
+                </div>
+              </div>
+            </article>
 
-          <article class="card" id="hour-of-code">
-            <div class="project-hero" style="background: linear-gradient(135deg,#4D79FF,#C44DFF);">
-              <h3>Project 2: Hour of Code</h3>
-            </div>
-            <div class="card-body">
-              <p>
-                A short project focused on learning fundamentals through guided coding activities.
-                Add what you built, the tools you used, and what you learned.
-              </p>
-              <div class="tags" aria-label="Technologies">
-                <span class="tag">JavaScript</span>
-                <span class="tag">Practice</span>
+            <article class="card project-card" id="hour-of-code" tabindex="0" role="button" data-project="hourOfCode" aria-label="Open project details">
+              <div class="project-hero" style="background: linear-gradient(135deg,#4D79FF,#C44DFF);">
+                <h3>Project 2: Hour of Code</h3>
               </div>
-            </div>
-          </article>
+              <div class="card-body">
+                <p>
+                  Guided coding exercises focused on programming fundamentals and problem solving.
+                </p>
+                <div class="tags" aria-label="Technologies">
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">Practice</span>
+                </div>
+              </div>
+            </article>
 
-          <article class="card" id="robotics">
-            <div class="project-hero" style="background: linear-gradient(135deg,#FFD93D,#FF6B9D);">
-              <h3>Project 3: Robotics</h3>
-            </div>
-            <div class="card-body">
-              <p>
-                A robotics-related build or activity. Describe the goal, the hardware/software used,
-                and the outcome (demo, competition, or prototype).
-              </p>
-              <div class="tags" aria-label="Technologies">
-                <span class="tag">STEM</span>
-                <span class="tag">Robotics</span>
+            <article class="card project-card" id="robotics" tabindex="0" role="button" data-project="robotics" aria-label="Open project details">
+              <div class="project-hero" style="background: linear-gradient(135deg,#FFD93D,#FF6B9D);">
+                <h3>Project 3: Robotics</h3>
               </div>
+              <div class="card-body">
+                <p>
+                  Robotics build combining software logic and practical hardware experimentation.
+                </p>
+                <div class="tags" aria-label="Technologies">
+                  <span class="tag">STEM</span>
+                  <span class="tag">Robotics</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="project-modal" id="projectModal" aria-hidden="true">
+            <div class="project-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+              <button class="project-modal-close" id="projectModalClose" type="button" aria-label="Close project details">
+                ×
+              </button>
+              <h3 id="projectModalTitle"></h3>
+              <p class="project-modal-description" id="projectModalDescription"></p>
+              <div class="project-modal-images" id="projectModalImages"></div>
+              <ul class="project-modal-details" id="projectModalDetails"></ul>
             </div>
-          </article>
           </div>
         </div>
       </section>

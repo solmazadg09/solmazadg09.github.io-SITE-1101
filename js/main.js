@@ -198,4 +198,94 @@
   );
 
   revealTargets.forEach((el) => io.observe(el));
+
+  // ---------------------------------------------------------
+  // PROJECT DETAILS MODAL: open card for full details
+  // ---------------------------------------------------------
+  const modal = document.getElementById("projectModal");
+  const modalClose = document.getElementById("projectModalClose");
+  const modalTitle = document.getElementById("projectModalTitle");
+  const modalDescription = document.getElementById("projectModalDescription");
+  const modalImages = document.getElementById("projectModalImages");
+  const modalDetails = document.getElementById("projectModalDetails");
+  const projectCards = document.querySelectorAll(".project-card");
+
+  if (modal && modalClose && modalTitle && modalDescription && modalImages && modalDetails && projectCards.length) {
+    const projectData = {
+      project1: {
+        title: "Portfolio Website",
+        description:
+          "A multi-page portfolio built with semantic HTML, modern CSS, and JavaScript interactions.",
+        images: ["Home Hero Preview", "Responsive Layout Preview"],
+        details: [
+          "Includes shared responsive navbar and footer across all pages.",
+          "Features smooth hover interactions, card animations, and clean spacing rhythm.",
+          "Designed to remain stable and readable on desktop, tablet, and mobile.",
+        ],
+      },
+      hourOfCode: {
+        title: "Hour of Code",
+        description:
+          "A practice-focused project where I applied JavaScript basics to small interactive tasks.",
+        images: ["Logic Exercise Screenshot", "UI Output Screenshot"],
+        details: [
+          "Focused on conditionals, loops, and event-driven interactions.",
+          "Used small milestones to validate logic and improve debugging workflow.",
+          "Built to reinforce coding fundamentals with practical examples.",
+        ],
+      },
+      robotics: {
+        title: "Robotics",
+        description:
+          "A robotics activity combining hands-on prototyping and software logic for control flow.",
+        images: ["Prototype Build Photo", "Control Logic Diagram"],
+        details: [
+          "Documented build steps, experiments, and final behavior outcomes.",
+          "Combined iterative testing with problem solving for reliability.",
+          "Highlights teamwork, STEM thinking, and practical implementation.",
+        ],
+      },
+    };
+
+    const closeModal = () => {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    };
+
+    const openModal = (projectId) => {
+      const data = projectData[projectId];
+      if (!data) return;
+
+      modalTitle.textContent = data.title;
+      modalDescription.textContent = data.description;
+      modalImages.innerHTML = data.images
+        .map((label) => `<div class="detail-image" role="img" aria-label="${label}">${label}</div>`)
+        .join("");
+      modalDetails.innerHTML = data.details.map((item) => `<li>${item}</li>`).join("");
+
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+
+    projectCards.forEach((card) => {
+      if (!(card instanceof HTMLElement)) return;
+      card.addEventListener("click", () => openModal(card.dataset.project));
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openModal(card.dataset.project);
+        }
+      });
+    });
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+    });
+  }
 })();

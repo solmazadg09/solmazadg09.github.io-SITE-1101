@@ -25,6 +25,7 @@
 
   --font-body: "Lato", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --font-head: "Raleway", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --ease-standard: 220ms ease;
 }
 
 *,
@@ -82,6 +83,7 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+  transition: color var(--ease-standard), opacity var(--ease-standard), transform var(--ease-standard);
 }
 
 code {
@@ -336,7 +338,7 @@ h3 {
   border: 1px solid var(--border);
   font-weight: 800;
   letter-spacing: -0.01em;
-  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+  transition: transform var(--ease-standard), box-shadow var(--ease-standard), background var(--ease-standard);
   white-space: nowrap;
   font-family: var(--font-head);
 }
@@ -350,8 +352,8 @@ h3 {
 
 .button-primary:hover,
 .button-primary:focus-visible {
-  transform: translateY(-1px) scale(1.05);
-  box-shadow: 0 18px 40px rgba(255, 107, 157, 0.22), 0 0 0 6px rgba(255, 217, 61, 0.20);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(196, 77, 255, 0.28);
   outline: none;
 }
 
@@ -375,7 +377,7 @@ h3 {
 .button-outline:hover,
 .button-outline:focus-visible {
   background: var(--grad);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   outline: none;
 }
 
@@ -464,7 +466,7 @@ h3 {
 }
 
 .hero-links {
-  margin-top: 0.9rem;
+  margin-top: 1rem;
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
@@ -478,7 +480,7 @@ h3 {
   place-items: center;
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.88);
-  transition: transform 140ms ease, box-shadow 140ms ease;
+  transition: transform var(--ease-standard), box-shadow var(--ease-standard);
 }
 
 .hero-link:hover,
@@ -576,7 +578,7 @@ h3 {
 .cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.1rem;
+  gap: 1.4rem;
 }
 
 .card {
@@ -586,7 +588,7 @@ h3 {
   border: 1px solid rgba(26, 26, 46, 0.08);
   overflow: hidden;
   position: relative;
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  transition: transform var(--ease-standard), box-shadow var(--ease-standard);
 }
 
 .card::before {
@@ -608,8 +610,12 @@ h3 {
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-2);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 42px rgba(26, 26, 46, 0.16);
+}
+
+.project-card {
+  cursor: pointer;
 }
 
 .card-body {
@@ -836,18 +842,90 @@ h3 {
   cursor: pointer;
   letter-spacing: 0.05em;
   box-shadow: 0 8px 24px rgba(196, 77, 255, 0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform var(--ease-standard), box-shadow var(--ease-standard);
 }
 
 .game-cta:hover,
 .game-cta:focus-visible {
-  transform: translateY(-3px) scale(1.04);
-  box-shadow: 0 12px 32px rgba(196, 77, 255, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(196, 77, 255, 0.48);
   outline: none;
 }
 
 .game-cta:active {
-  transform: translateY(0) scale(0.98);
+  transform: translateY(0);
+}
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(26, 26, 46, 0.42);
+  z-index: 120;
+}
+
+.project-modal.open {
+  display: flex;
+}
+
+.project-modal-dialog {
+  position: relative;
+  width: min(760px, 96vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid rgba(26, 26, 46, 0.12);
+  box-shadow: 0 24px 60px rgba(26, 26, 46, 0.24);
+  padding: 1.25rem 1.25rem 1.4rem;
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.project-modal-description {
+  margin: 0.35rem 0 0.85rem;
+}
+
+.project-modal-images {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.detail-image {
+  min-height: 170px;
+  border-radius: 14px;
+  border: 1px solid rgba(26, 26, 46, 0.1);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: rgba(26, 26, 46, 0.74);
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(196, 77, 255, 0.2), rgba(77, 121, 255, 0.2));
+}
+
+.project-modal-details {
+  margin: 0.95rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.project-modal-details li {
+  margin-bottom: 0.45rem;
 }
 
 .game-hint {
@@ -986,6 +1064,10 @@ h3 {
   }
 
   .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .project-modal-images {
     grid-template-columns: 1fr;
   }
 
