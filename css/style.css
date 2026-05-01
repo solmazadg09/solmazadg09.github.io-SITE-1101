@@ -786,6 +786,8 @@ h3 {
   box-shadow: 0 20px 60px rgba(196, 77, 255, 0.15), 0 8px 24px rgba(255, 107, 157, 0.1);
   padding: 24px;
   display: inline-block;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .game-topbar {
@@ -808,9 +810,10 @@ h3 {
 }
 
 .canvas-wrap {
-  width: 400px;
-  max-width: 90vw;
+  width: min(400px, 100%);
+  max-width: min(400px, 90vw);
   margin: 0 auto;
+  overflow: hidden;
 }
 
 #gameCanvas {
@@ -836,6 +839,7 @@ h3 {
   border: none;
   border-radius: 50px;
   padding: 14px 48px;
+  min-height: 48px;
   font-size: 1.1rem;
   font-weight: 700;
   font-family: var(--font-head);
@@ -843,6 +847,7 @@ h3 {
   letter-spacing: 0.05em;
   box-shadow: 0 8px 24px rgba(196, 77, 255, 0.4);
   transition: transform var(--ease-standard), box-shadow var(--ease-standard);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .game-cta:hover,

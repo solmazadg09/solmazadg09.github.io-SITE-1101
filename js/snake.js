@@ -10,10 +10,13 @@
   if (!canvas || !ctx || !scoreEl || !bestEl || !actionBtn) return;
 
   const GRID = 20;
-  const CELL = canvas.width / GRID;
-  const STEP_MS = 110;
+  const STEP_MS = 118;
   const DEMO_STEP_MS = 180;
   const storageKey = "snake_best_v2";
+
+  function cellSize() {
+    return canvas.width / GRID;
+  }
 
   /** @type {"start" | "play" | "over"} */
   let state = "start";
@@ -37,22 +40,24 @@
   }
 
   function placeFood() {
-    for (let i = 0; i < 250; i++) {
-      const p = { x: Math.floor(Math.random() * GRID), y: Math.floor(Math.random() * GRID) };
-      if (!snake.some((s) => s.x === p.x && s.y === p.y)) {
-        food = p;
-        return;
+    const empty = [];
+    for (let y = 0; y < GRID; y++) {
+      for (let x = 0; x < GRID; x++) {
+        if (!snake.some((s) => s.x === x && s.y === y)) empty.push({ x, y });
       }
     }
+    if (!empty.length) return;
+    food = empty[Math.floor(Math.random() * empty.length)];
   }
 
+  /** Safe spawn: horizontal snake centered on board, away from walls. */
   function resetGame() {
-    snake = [
-      { x: 7, y: 10 },
-      { x: 8, y: 10 },
-      { x: 9, y: 10 },
-      { x: 10, y: 10 },
-    ];
+    const midY = Math.floor(GRID / 2);
+    const midX = Math.floor(GRID / 2);
+    const len = 4;
+    const startX = midX - Math.floor((len - 1) / 2);
+    snake = [];
+    for (let i = 0; i < len; i++) snake.push({ x: startX + i, y: midY });
     dir = { x: 1, y: 0 };
     nextDir = { x: 1, y: 0 };
     score = 0;
@@ -94,6 +99,7 @@
       if (next.x < 0 || next.x >= GRID || next.y < 0 || next.y >= GRID) return;
     } else {
       if (next.x < 0 || next.x >= GRID || next.y < 0 || next.y >= GRID) {
+        acc = 0;
         state = "over";
         actionBtn.textContent = "Play Again";
         if (score > best) {
@@ -109,6 +115,7 @@
     const body = willEat ? snake : snake.slice(1);
     if (body.some((s) => s.x === next.x && s.y === next.y)) {
       if (isDemo) return;
+      acc = 0;
       state = "over";
       actionBtn.textContent = "Play Again";
       if (score > best) {
@@ -151,6 +158,7 @@
   }
 
   function drawBoard() {
+    const cell = cellSize();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -158,7 +166,7 @@
     ctx.strokeStyle = "#F0F0F0";
     ctx.lineWidth = 1;
     for (let i = 1; i < GRID; i++) {
-      const p = i * CELL + 0.5;
+      const p = i * cell + 0.5;
       ctx.beginPath();
       ctx.moveTo(p, 0);
       ctx.lineTo(p, canvas.height);
@@ -174,7 +182,7 @@
     ctx.shadowColor = "#FFD93D";
     ctx.fillStyle = "#FFD93D";
     ctx.beginPath();
-    ctx.arc(food.x * CELL + CELL / 2, food.y * CELL + CELL / 2, CELL * 0.28, 0, Math.PI * 2);
+    ctx.arc(food.x * cell + cell / 2, food.y * cell + cell / 2, cell * 0.28, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
 
@@ -184,40 +192,43 @@
       const s = snake[i];
       const t = snake.length <= 1 ? 0 : i / (snake.length - 1);
       ctx.fillStyle = i === snake.length - 1 ? "#FF6B9D" : rgbMix(body, tail, 1 - t);
-      drawRoundedRect(s.x * CELL + 2, s.y * CELL + 2, CELL - 4, CELL - 4, 4);
+      drawRoundedRect(s.x * cell + 2, s.y * cell + 2, cell - 4, cell - 4, 4);
       ctx.fill();
     }
   }
 
   function drawStartScreen() {
     drawBoard();
-    const grad = ctx.createLinearGradient(90, 120, 310, 120);
+    const cx = canvas.width / 2;
+    const grad = ctx.createLinearGradient(cx - 110, 120, cx + 110, 120);
     grad.addColorStop(0, "#FF6B9D");
     grad.addColorStop(0.5, "#C44DFF");
     grad.addColorStop(1, "#4D79FF");
     ctx.fillStyle = grad;
     ctx.font = "bold 44px Raleway, sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText("🐍 Snake", 200, 130);
+    ctx.fillText("🐍 Snake", cx, 130);
     ctx.fillStyle = "#777";
     ctx.font = "16px Lato, sans-serif";
-    ctx.fillText("Press any key or tap to start", 200, 165);
+    ctx.fillText("Press any key or tap to start", cx, 165);
   }
 
   function drawGameOver() {
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
     ctx.fillStyle = "rgba(255,255,255,0.92)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    const grad = ctx.createLinearGradient(80, 180, 320, 180);
+    const grad = ctx.createLinearGradient(cx - 120, cy - 40, cx + 120, cy - 40);
     grad.addColorStop(0, "#FF6B9D");
     grad.addColorStop(0.5, "#C44DFF");
     grad.addColorStop(1, "#4D79FF");
     ctx.fillStyle = grad;
     ctx.font = "bold 36px Raleway, sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText("Game Over", 200, 180);
+    ctx.fillText("Game Over", cx, cy - 20);
     ctx.fillStyle = "#1A1A2E";
     ctx.font = "20px Lato, sans-serif";
-    ctx.fillText(`Score: ${score}`, 200, 220);
+    ctx.fillText(`Score: ${score}`, cx, cy + 20);
   }
 
   function loop(now) {
@@ -247,6 +258,8 @@
   }
 
   function startGame() {
+    acc = 0;
+    last = performance.now();
     state = "play";
     actionBtn.textContent = "Restart";
     resetGame();
