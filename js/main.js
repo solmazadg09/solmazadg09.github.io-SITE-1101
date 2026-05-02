@@ -220,7 +220,7 @@
         details: [
           "Collaboration: Partnered with other teams to scale basic gates into complex NAND and XOR circuits.",
           "Technical Logic: Documented the schematics and logic flow via a step-by-step video demonstration.",
-          "Safety First: Followed lab protocols—specifically using 330 Ohm resistors to prevent "melted LEDs."",
+          "Safety First: Followed lab protocols—specifically using 330 Ohm resistors to prevent melted LEDs.",
         ],
       },
       hourOfCode: {
