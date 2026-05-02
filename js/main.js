@@ -213,25 +213,25 @@
   if (modal && modalClose && modalTitle && modalDescription && modalImages && modalDetails && projectCards.length) {
     const projectData = {
       project1: {
-        title: "Portfolio Website",
+        title: "Building Logic Gates",
         description:
-          "A multi-page portfolio built with semantic HTML, modern CSS, and JavaScript interactions.",
-        images: ["Home Hero Preview", "Responsive Layout Preview"],
+          "Built and tested basic circuits on a solderless breadboard using PN2222 transistors.",
+        images: ["images/project1-1.jpg","images/project1-2.jpg"],
         details: [
-          "Includes shared responsive navbar and footer across all pages.",
-          "Features smooth hover interactions, card animations, and clean spacing rhythm.",
-          "Designed to remain stable and readable on desktop, tablet, and mobile.",
+          "Collaboration: Partnered with other teams to scale basic gates into complex NAND and XOR circuits.",
+          "Technical Logic: Documented the schematics and logic flow via a step-by-step video demonstration.",
+          "Safety First: Followed lab protocols—specifically using 330 Ohm resistors to prevent "melted LEDs."",
         ],
       },
       hourOfCode: {
         title: "Hour of Code",
         description:
-          "A practice-focused project where I applied JavaScript basics to small interactive tasks.",
-        images: ["Logic Exercise Screenshot", "UI Output Screenshot"],
+          "Conducted an interactive workshop for 10+ participants, using Microsoft MakeCode to teach fundamental programming logic.",
+        images: ["images/project2-1.jpg","images/project2-2.jpg"],
         details: [
-          "Focused on conditionals, loops, and event-driven interactions.",
-          "Used small milestones to validate logic and improve debugging workflow.",
-          "Built to reinforce coding fundamentals with practical examples.",
+          "Event Leadership: Managed all logistics, from community outreach and venue coordination to registering the event on the global CSforAll platform.",
+          "Educational Content: Delivered engaging presentations on AI and computer science, tailoring the material to make it accessible for beginners.",
+          "Digital Storytelling: Produced a recap video documenting the journey—from preparation to the rewarding moment of presenting certificates to participants.",
         ],
       },
       robotics: {
