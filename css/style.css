@@ -691,6 +691,26 @@ h3 {
   object-fit: cover;
 }
 
+.project-hero h3 {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+
+.project-hero img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.project-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1;
+}
+
 .cards {
   align-items: stretch;
 }
