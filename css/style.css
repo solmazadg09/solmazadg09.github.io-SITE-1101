@@ -711,6 +711,31 @@ h3 {
   z-index: 1;
 }
 
+.project-hero img {
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-hero img {
+  transform: scale(1.08);
+}
+
+.project-hero h3 {
+  transform: translateY(10px);
+  transition: 0.3s;
+}
+
+.project-card:hover .project-hero h3 {
+  transform: translateY(0);
+}
+
+.click-more {
+  transition: 0.3s;
+}
+
+.project-card:hover .click-more {
+  background: rgba(0,0,0,0.65);
+}
+
 .cards {
   align-items: stretch;
 }
