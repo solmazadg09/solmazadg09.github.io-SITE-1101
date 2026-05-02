@@ -821,6 +821,10 @@ h3 {
   margin: -10px auto 0;
 }
 
+.ring-photo {
+  overflow: hidden;
+}
+
 /* Game */
 .game-page {
   background: var(--bg-main);
