@@ -237,12 +237,12 @@
       robotics: {
         title: "Robotics",
         description:
-          "A robotics activity combining hands-on prototyping and software logic for control flow.",
-        images: ["Prototype Build Photo", "Control Logic Diagram"],
+          "Built the EV3 Base Model and engineered a custom medium-motor marker holder to ensure stable and consistent line drawing.",
+        images: ["images/project3-1.jpg","images/project3-2.jpg"],
         details: [
-          "Documented build steps, experiments, and final behavior outcomes.",
-          "Combined iterative testing with problem solving for reliability.",
-          "Highlights teamwork, STEM thinking, and practical implementation.",
+          "Precision Programming: Developed a JavaScript/Blocks program incorporating Gyro sensors for accurate rotation and movement control on a large-scale surface.",
+          "Problem Solving: Navigated engineering challenges such as motor speed calibration, cable connectivity, and sensor feedback to improve drawing accuracy.",
+          "Visual Documentation: Produced a comprehensive video recap detailing the construction process, code logic, and the final artwork execution.",
         ],
       },
     };
