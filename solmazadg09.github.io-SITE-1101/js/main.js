@@ -97,7 +97,7 @@
   // ---------------------------------------------------------
   const heroName = document.getElementById("heroName");
   if (heroName) {
-    const finalText = heroName.getAttribute("data-text") || heroName.textContent || "";
+    const finalText = heroName.getAttribute("data-text") || heroName.textContent || "Solmaz";
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*_-+=?";
     const durationMs = 1500;
     const frameMs = 30;
