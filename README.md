@@ -86,17 +86,19 @@ Focus on:
 
 ## 📁 Project Structure
 
+```text
 .
 ├── index.html
 ├── about.html
 ├── projects.html
 ├── game.html
 ├── css/
-│ └── style.css
+│   └── style.css
 ├── js/
-│ └── main.js
+│   └── main.js
 ├── images/
 └── README.md
+```
 
 
 ---
