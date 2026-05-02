@@ -691,9 +691,8 @@ h3 {
   object-fit: cover;
 }
 
-.card {
+.card-body {
   position: relative;
-  overflow: hidden;
 }
 
 .click-more {
@@ -705,13 +704,11 @@ h3 {
   background: rgba(0,0,0,0.45);
   padding: 6px 10px;
   border-radius: 999px;
-  cursor: pointer;
-  z-index: 5;
+  z-index: 2;
 }
 
 .card-body {
-  position: relative;
-  padding-bottom: 40px;
+  padding-bottom: 50px;
 }
 
 /* About layout */
