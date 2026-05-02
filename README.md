@@ -1,52 +1,157 @@
-# Solmaz - Personal Portfolio
+# 🌐 Solmaz - Personal Portfolio (SITE 1101 Project)
 
-## 🌐 Live Site
-**[https://solmazadg09.github.io/solmazadg09.github.io-SITE-1101/](https://solmazadg09.github.io/solmazadg09.github.io-SITE-1101/)**
+## 🔗 Live Website
+https://solmazadg09.github.io/solmazadg09.github.io-SITE-1101/
 
-## ✨ Overview
-Personal portfolio website built from scratch with HTML, CSS, and vanilla JavaScript for SITE 1101: Principles of Information Systems.
+## 🔗 GitHub Repository
+https://github.com/solmazadg09/solmazadg09.github.io-SITE-1101
 
-## 📄 Pages
-| Page | Highlights |
-|------|-----------|
-| **Home** | Gradient hero, text scramble, magnetic buttons, floating blobs |
-| **About** | Bio, gradient skills grid, timeline |
-| **Projects** | Card spotlight hover, gradient cards, tech tags |
-| **Game** | Gradient Snake game with glow, mobile swipe, high score |
+## 🔗 Codecademy Profile
+https://www.codecademy.com/profiles/solmaz.adg
+
+---
+
+## 📌 Project Overview
+This is my personal portfolio website developed for **SITE 1101: Principles of Information Systems**.  
+It demonstrates my skills in HTML, CSS, JavaScript, Git, GitHub, and responsive web design.
+
+The project was built using modular code structure and deployed using GitHub Pages.
+
+---
+
+## 📄 Website Pages
+
+### 🏠 Home Page
+- Personal introduction
+- Animated hero section
+- Gradient-based UI design
+- Smooth navigation
+
+### 👤 About Page
+- Background
+- Skills and activities
+- Timeline of learning experience
+
+### 💼 Projects Page
+Includes:
+- Project 1: Building Logic Gates
+- Project 2: Hour of Code 
+- Project 3: Robotics
+
+Each project contains:
+- Title
+- Description
+- Images/screenshots
+
+### 🎮 Game Page
+- Interactive Snake Game
+- Score system
+- Mobile controls (swipe support)
+- Smooth animations
+
+---
 
 ## 🎨 Design Inspiration
-Inspired by Josh W. Comeau's portfolio: **[https://www.joshwcomeau.com/](https://www.joshwcomeau.com/)**
+Inspired by:
+https://www.joshwcomeau.com/
+
+Focus on:
+- Modern UI/UX
+- Gradient visuals
+- Smooth animations
+- Clean layout
+
+---
 
 ## 💻 Tech Stack
-`HTML5` `CSS3` `Vanilla JavaScript` `Font Awesome 6` `Google Fonts`
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+- Font Awesome
+- Google Fonts
+- Git & GitHub Pages
+
+---
 
 ## ✨ Key Features
-- Gradient text & gradient blob background shapes
-- Magnetic button hover effect
-- Card mouse-tracking spotlight glow effect
-- Text scramble animation on page load
-- Scroll-reveal with staggered animations
-- Gradient Snake game (60fps, mobile swipe)
-- Fully responsive with hamburger menu
-- GitHub & Codecademy profile links
+- Fully responsive design (mobile, tablet, desktop)
+- Gradient UI and animated elements
+- Scroll reveal animations
+- Hover effects (magnetic buttons, spotlight cards)
+- Text scramble animation
+- Interactive Snake game
+- Modular file structure
+
+---
+
+## 📁 Project Structure
+
+.
+├── index.html
+├── about.html
+├── projects.html
+├── game.html
+├── css/
+│ └── style.css
+├── js/
+│ └── main.js
+├── images/
+└── README.md
+
+
+---
 
 ## 🚀 Run Locally
 ```bash
-git clone https://github.com/solmazadg09/solmazadg09.github.io-SITE-1101.git
-# Open index.html in any browser - no build step needed
-```
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+cd YOUR_REPO_NAME
+open index.html
 
-## 📦 Structure
-```text
-.
-├── index.html       # Home
-├── about.html       # About
-├── projects.html    # Projects
-├── game.html        # Snake Game
-├── css/
-│   └── style.css    # All styles
-├── js/
-│   └── main.js      # Shared JavaScript
-├── images/          # Photos & assets
-└── README.md
-```
+No installation required.
+
+🤖 AI Development Process
+
+This project was developed with the help of an AI coding assistant (Cursor / VSCode AI).
+
+All AI interactions are documented in:
+ai-chat-log.md
+
+Includes:
+
+Development prompts
+AI responses
+Iterations and improvements
+
+📊 Git Version Control
+
+This project was developed using Git with multiple commits:
+
+Initial setup
+Page creation
+Styling and UI design
+Game implementation
+Final optimization
+📱 Responsiveness
+
+Fully responsive and tested on:
+
+Desktop
+Tablet
+Mobile
+
+🏁 Submission Checklist
+
+✔ Live website deployed on GitHub Pages
+✔ Public GitHub repository
+✔ README.md included
+✔ AI chat exported (.md file)
+✔ Home, About, Projects pages included
+✔ Interactive JavaScript game included
+✔ Responsive design implemented
+✔ Navigation bar and footer included
+✔ Clean modular structure
+✔ Multiple Git commits shown
+
+📌 Note
+
+This project was created for SITE 1101 and fully follows assignment requirements for structure, design, and functionality.
