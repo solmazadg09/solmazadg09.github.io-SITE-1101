@@ -867,6 +867,15 @@ h3 {
   font-weight: bold;
 }
 
+.about-text p {
+  margin-bottom: 14px;
+  line-height: 1.7;
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
 /* Game */
 .game-page {
   background: var(--bg-main);
