@@ -53,7 +53,7 @@ Each project contains:
 
 ## 🎨 Design Inspiration
 Inspired by:
-https://www.joshwcomeau.com/
+https://shivani-portfolio.lovable.app/
 
 Focus on:
 - Modern UI/UX
