@@ -260,8 +260,8 @@
       modalTitle.textContent = data.title;
       modalDescription.textContent = data.description;
       modalImages.innerHTML = data.images
-        .map((label) => `<div class="detail-image" role="img" aria-label="${label}">${label}</div>`)
-        .join("");
+      .map((src) => `<img src="${src}" class="detail-image" alt="project image">`)
+      .join("");
       modalDetails.innerHTML = data.details.map((item) => `<li>${item}</li>`).join("");
 
       modal.classList.add("open");
